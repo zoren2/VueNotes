@@ -21,5 +21,18 @@ new Vue({
     },
     components: {
         'input-component': inputComponent
+    },
+    methods: {
+        monitorEnterKey() {
+            this.$emit('add-note', {
+                note: this.input,
+                timestamp: new Date().toLocaleString()
+            });
+            this.input = '';
+        },
+        addNote(event) {
+            this.notes.push(event.note);
+            this.timestamps.push(event.timestamp);
+        }
     }
 })
